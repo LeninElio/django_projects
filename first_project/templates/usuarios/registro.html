@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+    
+{% block content %}
+
+    <div class="col">
+        <h2>Registro:</h2>
+        <form method='post'>
+        
+            {% csrf_token %}
+            
+            {% comment %} Forma tradicional {% endcomment %}
+            {% comment %} <div class='form-group'>
+                {{ form.username.label_tag }}
+                {{ form.username }}
+            </div>
+
+            <div class='form-group'>
+                {{ form.email.label_tag }}
+                {{ form.email }}
+            </div>
+
+            <div class='form-group'>
+                {{ form.password.label_tag }}
+                {{ form.password }}
+            </div> {% endcomment %}
+
+            {% comment %} Usando bucles {% endcomment %}
+            {% for field in form %}
+                <div class='form-group'>
+                    {{ field.label_tag }}
+                    {{ field }}
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-primary mt-2">Registrase</button>
+        
+        </form>
+    </div>
+
+{% endblock %}

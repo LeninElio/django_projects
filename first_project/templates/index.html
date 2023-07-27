@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    {% comment %} <div class="col">
+        <h1>Productos</h1>
+
+        <ul class="list-group">
+            {% for producto in product_list %}
+
+                <li class="list-group-item">
+                    {{producto.title}}
+                    <span class='text-danger'>S./ {{ producto.price }}</span>
+                    <p class='text-success'>Descripcion: {{ producto.description }}</p>
+                    <p class='text-warning'>Creado: {{ producto.created_at }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div> {% endcomment %}
+
+    <div class="row">
+        {% for producto in product_list %}
+            <div class="col-3 mt-5">
+                <div class="card h-100">
+                    {% if producto.image %}
+                        <img src="{{ producto.image.url }}" alt="{{ producto.title }}" class="img-fluid">
+                    {% endif %}
+                </div>
+
+                <div class="card-body">
+                    <h5 class="card-title">{{ producto.title }}</h5>
+                    <p class="card-text">{{ producto.description }}</p>
+                    <a href="#" class="btn btn-primary">Ver detalles</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
