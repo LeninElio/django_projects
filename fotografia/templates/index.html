@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block content %}
+<div class="container preview-image-container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mt-5"></div>
+            <h2 class="h5 mb-2 pb-1 text-white">Subir fotografía</h2>
+            <p class="mb-4 fs-sm text-white">Archivos soportados: PNG, JPEG, JPG. Max size: 1mb.</p>
+
+            <div class="invalid-feedback invalidFileSize" style="display:none;">El tamaño máximo del archivo es de 1 mb.</div>
+            <div class="invalid-feedback invalidFileType" style="display:none;">Solo se acepta archivos de tipo PNG, JPEG y JPG.</div>
+
+            <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="file-drop-area">
+                    <div class="file-drop-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>                    
+                    <span class="file-drop-message">Arrasta y suelta el archivo aqui...</span>
+                    <input type="file" name="image" class="file-drop-input" accept=".png, .jpg, .jpeg">
+                    <button type="button" class="file-drop-btn btn btn-primary btn-sm">
+                        <i class="fa-solid fa-circle-check"></i>
+                        Seleccionar
+                    </button>
+                    <button type="submit" class="file-drop-btn btn btn-success btn-sm">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        Procesar
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm remove-upload-btn">
+                        <i class="fa-solid fa-trash"></i>
+                        Eliminar
+                    </button>
+                </div>
+            </form>      
+
+            <div id="result-message" style="display: none;"></div>
+
+            <div class="mt-5 text-muted">
+                <span><b>Por favor</b>, revisa a detalle las caracteristicas solicitadas.</span>
+            </div>
+        </div>
+        
+
+        <aside class="col-md-6 mt-0">
+            <div class="mt-5"></div>
+
+            
+            <div class="accordion" id="accordionPanelsStayOpenExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                        <strong class="me-auto">Requisitos:</strong>
+                    </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                    <div class="accordion-body">
+                        <strong>Para que su fotografía sea aceptada para el carnet universitario la imagen debe cumplir con las siguientes especificaciones:</strong>
+
+                        <p></p>
+                        
+                        <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Imagen a color con fondo blanco
+                            <span class="badge bg-primary rounded-pill">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            </span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Tomada de frente
+                            <span class="badge bg-primary rounded-pill">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            </span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            No se permiten fotos con gafas o lentes de color oscuro (a excepción de los invidentes)
+                            <span class="badge bg-primary rounded-pill">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            </span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            No se permiten fotos con gorra.
+                            <span class="badge bg-primary rounded-pill">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            </span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            La imagen debe enfocarse en el rostro del estudiante a partir de los hombros.
+                            <span class="badge bg-primary rounded-pill">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            </span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            No mostrar medio cuerpo.
+                        </li>
+                        </ul>
+
+                        <p></p>
+                        <span class="badge bg-primary rounded-pill">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        Caracteristicas impresindibles...
+                        </span>
+
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </aside>         
+    </div>  
+</div>
+{% endblock %}
+
+ 

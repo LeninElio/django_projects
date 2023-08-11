@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>Imagen subida y procesada exitosamente</h1>
+<p>La imagen ha sido procesada correctamente.</p>
+
+<p>Tamaño de la imagen: {{ image_size }}</p>
+<p>Tipo de la imagen: {{ image_type }}</p>
+
+
+<p>URL de la imagen: <a href="{{ imagen_url }}">{{ imagen_url }}</a></p>
+
+
+<img src="{{ imagen_url }}" alt="Imagen cargada">
+
+<p>Tipo de la imagen: {{ tamano }}</p>
+<a href="{% url 'index' %}">Volver al inicio</a>
+
+
+{% endblock %}
