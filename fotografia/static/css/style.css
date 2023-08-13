@@ -47,11 +47,23 @@ img, figure {
   height: auto;
   vertical-align: middle;
 }     
-
 .curved {
   position: relative;
   background: #265689;
   height: 50vh;
   border-bottom-left-radius: 50% 62%;
   border-bottom-right-radius: 50% 62%;
+}
+.list-group-item.activate {
+  background-color: #255588;
+  border-color: #255588;
+}
+.badge.text-color-blue {
+  color: #265689;
+}
+@media screen and (max-width: 640px) {
+  .curved {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
 }

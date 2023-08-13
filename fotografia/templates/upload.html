@@ -1,22 +1,100 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}
+
+<h3 class="h2 text-center text-white text-uppercase">Resultados de la validación</h3>
+<p class="d-block text-center text-white text-uppercase">Carné Universitario</p>
+
+{% endblock title %}
+
 {% block content %}
 
-<h1>Imagen subida y procesada exitosamente</h1>
-<p>La imagen ha sido procesada correctamente.</p>
+<div class="container preview-image-container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mt-5"></div>
+            
+            <div class="file-drop-area">
+                <div class="file-drop-preview img-thumbnail rounded">
+                    <img src="{{ imagen_url }}" alt="161.0704.574.jpg">
+                </div>               
 
-<p>Tamaño de la imagen: {{ image_size }}</p>
-<p>Tipo de la imagen: {{ image_type }}</p>
+                <a href="{% url 'index' %}" type="button" class="btn btn-primary">
+                    <i class="fa-solid fa-file-waveform"></i>
+                    Nuevo análisis
+                </a>
+            </div>
+        </div>
+        
+
+        <aside class="col-md-6 mt-0">
+            <div class="mt-5"></div>
+
+            <div class="accordion" id="accordionPanelsStayOpenExample">
+              <div class="accordion-item">
+                  <div class="accordion-body">
 
 
-<p>URL de la imagen: <a href="{{ imagen_url }}">{{ imagen_url }}</a></p>
+                      <div class="container mt-3">
+                        <h2>Fotografía procesada correctamente</h2>
+                        <p>Análisis de la imagen:</p>            
+                        <table class="table table-borderless">
+                          <thead>
+                            <tr>
+                              <th>Característica</th>
+                              <th>Pedida</th>
+                              <th>Obtenida</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>Ancho:</td>
+                              <td>
+                                <span class="badge bg-primary rounded-pill">
+                                  240 px
+                                </span>
+                              </td>
+                              <td>{{ ancho }} px</td>
+                            </tr>
+                            <tr>
+                              <td>Alto:</td>
+                              <td>
+                                <span class="badge bg-primary rounded-pill">
+                                  248 px
+                                </span>
+                              </td>
+                              <td>{{ alto }} px</td>
+                            </tr>
+                            <tr>
+                              <td>Es una persona?:</td>
+                              <td>
+                                <span class="badge bg-primary rounded-pill">
+                                  Es una persona
+                                </span>
+                              </td>
+                              <td>{{ persona }}</td>
+                            </tr>
+                            <tr>
+                              <td>DPI:</td>
+                              <td>
+                                <span class="badge bg-primary rounded-pill">
+                                  300
+                                </span>
+                              </td>
+                              <td>{{ dpi }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
 
 
-<img src="{{ imagen_url }}" alt="Imagen cargada">
+                  </div>
+              </div>
+          </div>
 
-<p>Tipo de la imagen: {{ tamano }}</p>
-<a href="{% url 'index' %}">Volver al inicio</a>
-
+        </aside>         
+    </div>  
+</div>
 
 {% endblock %}

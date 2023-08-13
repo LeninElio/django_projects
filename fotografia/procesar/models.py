@@ -2,6 +2,7 @@ import os
 import uuid
 from django.db import models
 from PIL import Image
+import cv2
 
 
 def generate_filename(instance, filename):
@@ -27,5 +28,32 @@ class Picture(models.Model):
         Retorna el tamaño de la imagen.
         """
         img = Image.open(self.image.path)
-        ancho, alto = img.size
-        return f"{ancho}x{alto}"
+        return img.size
+
+
+    def detectar_persona(self):
+        """
+        Detecta si hay una persona en la imagen.
+        """
+        face_cascade = cv2.CascadeClassifier(
+            cv2.data.haarcascades + 'haarcascade_frontalface_default.xml'
+            )
+
+        img = cv2.imread(self.image.path)
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        faces = face_cascade.detectMultiScale(
+            gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30)
+            )
+
+        if len(faces) > 0:
+            return "Es una persona"
+        return "No es una persona"
+
+
+    def obtener_dpi(self):
+        """
+        Calcular el dpi de la imagen.
+        """
+        img = Image.open(self.image.path)
+        dpi = img.info.get("dpi")
+        return dpi

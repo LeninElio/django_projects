@@ -25,12 +25,18 @@ def upload(request):
             imagen_obj.save()
 
             image_url = imagen_obj.image.url
+            ancho, alto = imagen_obj.tamano_imagen()
 
             return render(request, 'upload.html',
                           {'image_size': imagen.size,
                            'image_type': imagen.content_type,
                            'imagen_url': image_url,
-                           'tamano': imagen_obj.tamano_imagen()}
+                           'ancho': ancho,
+                           'alto': alto,
+                           'persona': imagen_obj.detectar_persona(),
+                           "dpi": imagen_obj.obtener_dpi()
+                           }
                            )
 
-    return HttpResponse('Error al subir la imagen.')
+    return render(request, '404.html')
+    # return HttpResponse('Error al subir la imagen.')
