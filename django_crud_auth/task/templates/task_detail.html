@@ -3,45 +3,51 @@
 {% block content %}
 
     <main class='container py-5'>
-        <section class='card card-body'>
-
-            <h1>{{ task.title }}</h1>
-            <p>Welcome to the task detail page!</p>
-            {{ error }}
-                
-                <form method="post">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-
-                    <div class="btn-group">
-                        <button type="submit" class="btn btn-primary">
-                            Update
-                        </button>
+        <div class='row justify-content-center'>
+            <div class='col-md-8'>
+                <section class='card card-body'>
+                    <h1>{{ task.title }}</h1>
+                    <p>Welcome to the task detail page!</p>
+                    
+                    {% if error %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        {{ error }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
+                    {% endif %}
+                        
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
 
-                </form>
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa-regular fa-pen-nib"></i>
+                                Update
+                            </button>
+                        </div>
+                    </form>
 
+                    <div class="mt-2">
+                        <form action="{% url 'complete_task' task.id %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-warning">
+                                <i class="fa-regular fa-check-double"></i>
+                                Complete
+                            </button>
+                        </form>
 
-            <div class="btn-group">
-                <form action="{% url 'complete_task' task.id %}" method="post">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-warning">
-                        Complete
-                    </button>
-                </form>
-
-                <form action="{% url 'delete_task' task.id %}" method="post">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-danger">
-                        Delete
-                    </button>
-                </form>
+                        <form action="{% url 'delete_task' task.id %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fa-sharp fa-solid fa-trash"></i>
+                                Delete
+                            </button>
+                        </form>
+                    </div>
+                </section>
             </div>
-
-
-
-            
-        </section>
+        </div>
     </main>
 
 {% endblock %}
