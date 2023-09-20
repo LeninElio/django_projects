@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <main class="container">
+        <div class="row">
+            <div class="col-md-4 offset-md-4 py-5">
+                <form method="post" class="card card-body">
+                    <h1 class="text-center">Sing Up</h1>
+                    
+                    {% if error %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        {{ error }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endif %}
+                    
+                    {% csrf_token %} 
+                    <div class="mb-3">
+                        <label for="username">Username:</label>
+                        <input type="text" name="username" id="username" placeholder="Username" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password1">Password:</label>
+                        <input type="password" name="password1" id="password1" placeholder="Password" class="form-control" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="password2">Confirm your password:</label>
+                        <input type="password" name="password2" id="password2" placeholder="Confirm your password" class="form-control" required>
+                    </div>
+            
+                    <button class="btn btn-primary">
+                        Singup
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+{% endblock %}

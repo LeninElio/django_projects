@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <main class='container py-5'>
+        <section class='card card-body'>
+
+            <h1>{{ task.title }}</h1>
+            <p>Welcome to the task detail page!</p>
+            {{ error }}
+                
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-primary">
+                            Update
+                        </button>
+                    </div>
+
+                </form>
+
+
+            <div class="btn-group">
+                <form action="{% url 'complete_task' task.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-warning">
+                        Complete
+                    </button>
+                </form>
+
+                <form action="{% url 'delete_task' task.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">
+                        Delete
+                    </button>
+                </form>
+            </div>
+
+
+
+            
+        </section>
+    </main>
+
+{% endblock %}
